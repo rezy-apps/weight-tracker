@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikasi Pencatatan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f8f6;
+      color: #333;
+      animation: fadeIn 1s ease-in;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .header {
+      position: relative;
+      background-color: #2f7a3e;
+      color: white;
+      text-align: center;
+      padding: 40px 20px 50px;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      animation: slideDown 0.8s ease-in-out;
+      overflow: hidden;
+      z-index: 1;
+      perspective: 1px;
+      transform-style: preserve-3d;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://res.cloudinary.com/djznrjvy6/image/upload/v1744550306/pexels-sarah-chai-7262471_1_wfmuoh.png');
+      background-size: cover;
+      background-position: center;
+      transform: translateZ(-1px) scale(2);
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .header img {
+      width: 90px;
+      margin: 16px 0;
+    }
+
+    .version {
+      font-size: 0.85em;
+      opacity: 0.9;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 380px;
+      width: 90%;
+      margin: -40px auto 0;
+      background: white;
+      padding: 36px 24px;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #2f7a3e;
+      transition: color 0.3s;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #2f7a3e;
+      box-shadow: 0 0 6px rgba(47, 122, 62, 0.3);
+      outline: none;
+    }
+
+    button {
+      background-color: #3e833f;
+      color: white;
+      font-size: 16px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #2f7a3e;
+      transform: translateY(-1.5px);
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 14px;
+    }
+
+    .register a {
+      color: #2f7a3e;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .register a:hover {
+      color: #1c4925;
+    }
+
+    @media (max-width: 480px) {
+      .header h2 {
+        font-size: 20px;
+      }
+      .container {
+        padding: 28px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h2>Aplikasi Pencatatan</h2>
+    <img src="https://res.cloudinary.com/djznrjvy6/image/upload/v1744353196/logo_rezycology_yfmydk.png" alt="Rezycology Logo">
+    <div class="version">Versi 1.1.1</div>
+  </div>
+
+  <div class="container">
+    <form onsubmit="event.preventDefault(); window.location.href='beranda.html';">
+      <label for="entitas">Nama Entitas</label>
+      <input type="text" id="entitas" placeholder="Tulis nama entitas di sini">
+
+      <label for="username">Nama Pengguna</label>
+      <input type="text" id="username" placeholder="Tulis nama pengguna di sini">
+
+      <label for="password">Kata Sandi</label>
+      <input type="password" id="password" placeholder="Tulis kata sandi di sini">
+
+      <button type="submit">Masuk</button>
+    </form>
+
+    <div class="register">
+      Belum punya akun? <a href="#">Tekan di sini</a>
+    </div>
+  </div>
+
+<script>  
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registered', reg))
+        .catch(err => console.error('Service Worker registration failed', err));
+    });
+  }
+</script>
+  
+</body>
+</html>
