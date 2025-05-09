@@ -1,13 +1,13 @@
 {
   "name": "Aplikasi Pencatatan",
-  "short_name": "Rezycology",
+  "short_name": "Pencatatan Berat Saya",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#f9f9f9",
   "theme_color": "#2f7a3e",
   "icons": [
     {
-      "src": "https://res.cloudinary.com/djznrjvy6/image/upload/v1744353196/logo_rezycology_yfmydk.png",
+      "src": "https://res.cloudinary.com/djznrjvy6/image/upload/v1746773468/ChatGPT_Image_May_9__2025_at_01_47_18_PM-removebg-preview_dnibcp.png",
       "sizes": "192x192",
       "type": "image/png"
     }
