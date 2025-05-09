@@ -152,7 +152,7 @@
 
     function saveToSheet() {
       const rows = document.querySelectorAll('#trackerTable tbody tr');
-      const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Ganti dengan URL Web App kamu
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzvZ83WYrBCvMOk6WKqfN1HfDhg5uDl18CHbitNceh7X3es7YSCr0BhAHoJJXP-PQQ/exec'; // Ganti dengan URL Web App kamu
       for (let row of rows) {
         const week = row.cells[0].textContent.trim();
         const date = row.cells[1].querySelector('input').value;
