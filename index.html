@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <link rel="manifest" href="manifest.json">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weight Loss Tracker</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -81,6 +79,7 @@
   <button onclick="addRow()">➕ Tambah Baris</button>
   <button onclick="deleteLastRow()">🗑️ Hapus Baris Terakhir</button>
   <button onclick="updateChart()">📈 Perbarui Grafik</button>
+  <button onclick="saveToSheet()">💾 Simpan ke Google Sheets</button>
   <canvas id="weightChart" width="600" height="300"></canvas>
 
   <script>
@@ -149,6 +148,33 @@
           tbody.removeChild(rows[rows.length - 1]);
         }
       }
+    }
+
+    function saveToSheet() {
+      const rows = document.querySelectorAll('#trackerTable tbody tr');
+      const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Ganti dengan URL Web App kamu
+      for (let row of rows) {
+        const week = row.cells[0].textContent.trim();
+        const date = row.cells[1].querySelector('input').value;
+        const weight = row.cells[2].querySelector('input').value;
+        const note = row.cells[3].querySelector('input').value;
+
+        if (date && weight) {
+          fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({
+              week,
+              date,
+              weight,
+              note
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+        }
+      }
+      alert('Data berhasil dikirim ke Google Sheets!');
     }
   </script>
 </body>
